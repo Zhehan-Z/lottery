@@ -4,7 +4,7 @@
     <meta name="screen-orientation" content="portrait">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-    <title>年会抽奖小程序</title>
+    <title>学号抽选</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/wall.css">
     <style type="text/css">
@@ -141,7 +141,7 @@
 <body>
 <div id="main" class="wall">
     <div class="result-btn">
-       <a href="./result.html" target="_blank">获奖名单</a>
+       <a href="./result.html" target="_blank">V20230924-高一全员</a>
     </div>
 </div>
 <div id="result" class="result">
@@ -157,7 +157,7 @@
        class="pure-button"
        @click="toggle"
        :class="{'button-secondary': !running,
-               'button-success': running}">{{running?'停!':'开始'}}</button>
+               'button-success': running}">{{running?'停止':'抽取'}}</button>
     <button class="pure-button button-warning" @click="reset">重置</button>
 </div>
 <script type="text/javascript" src="js/zepto.js"></script>
@@ -235,7 +235,7 @@
             },
             methods: {
                 reset: function(){
-                    if(confirm('确定要重置么？所有之前的抽奖历史将被清除！')){
+                    if(confirm('即将清除系统中全部的抽奖历史。刚抽取完成的学号将恢复白色，并可能继续被抽到。继续？')){
                         localStorage.clear();
                         location.reload(true);
                     }
@@ -250,7 +250,7 @@
                         TagCanvas.SetSpeed('myCanvas', speed());
                         var ret = lottery(this.selected);
                         if (ret.length === 0) {
-                            $('#result').css('display', 'block').html('<span>已抽完</span>');
+                            $('#result').css('display', 'block').html('<span>全部学号已抽完</span>');
                             return
                         }
                         $('#result').css('display', 'block').html('<span>' + ret.join('</span><span>') + '</span>');
